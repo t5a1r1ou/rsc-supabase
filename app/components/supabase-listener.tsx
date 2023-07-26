@@ -21,14 +21,14 @@ export default function SupabaseListener({
           email: data.session?.user.email!,
         });
       }
-      getUserInfo();
-      supabase.auth.onAuthStateChange((_, session) => {
-        updateLoginUser({ id: session?.user.id, email: session?.user.email! });
-        if (session?.access_token !== accessToken) {
-          router.refresh();
-        }
-      });
     };
+    getUserInfo();
+    supabase.auth.onAuthStateChange((_, session) => {
+      updateLoginUser({ id: session?.user.id, email: session?.user.email! });
+      if (session?.access_token !== accessToken) {
+        router.refresh();
+      }
+    });
   }, [accessToken]);
   return null;
 }
